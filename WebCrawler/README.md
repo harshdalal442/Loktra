@@ -1,12 +1,14 @@
 # Setup
 
-`virtualenv venv ( In case you dont have virtualenv, pip3 install virtualenv )
+```
+virtualenv venv ( In case you dont have virtualenv, pip3 install virtualenv )
 
 source venv/bin/activate
 
 pip3 install -r requirements.txt
 
-python3 crawler.py <keyword> <page_number>`
+python3 crawler.py <keyword> <page_number>
+```
 
 # Miscellaneous
 
