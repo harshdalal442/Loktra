@@ -4,6 +4,10 @@ import requests
 import sys
 
 def get_maximum_number(input_query):	
+	"""
+		Input - String containing digits
+		Output - Returns the maximum number from all the digits.
+	"""
 	max = -9
 	for word in input_query.split(" "):		
 		if word.strip().isdigit():
@@ -12,17 +16,29 @@ def get_maximum_number(input_query):
 	return max
 
 def generate_url(keyword, page_number=None):
+	"""
+		Input - keyword and page number.
+		Output - Returns the appropriate url to call.
+	"""
 	if page_number is not None:
 		return 'http://www.shopping.com/products~PG-'+page_number+'?KW='+keyword
 	else:
 		return 'http://www.shopping.com/products?KW='+keyword
 
 def parse_html_total_number_of_results(response):
+	"""
+		Input - html of a page.
+		Output - Returns field contaning total number of results.
+	"""
 	soup = BeautifulSoup(response, "html.parser")
 	spans = soup.find_all('span', attrs={'class':'numTotalResults'})
 	return ("".join(spans[0].strings))
 
 def parse_html_get_results(response):
+	"""
+		Input - html of a page.
+		Output - Product details of products present on page.
+	"""
 	soup = BeautifulSoup(response, "html.parser")
 	spans = soup.find_all('span', attrs={'class':'quickLookGridItemFullName hide'})
 	atags = soup.find_all('span', attrs={'class':'productPrice'})	
@@ -36,6 +52,10 @@ def parse_html_get_results(response):
 			print("\n")		
 
 def get_html(url):
+	"""
+		Input - url of a page
+		Output - html content of that page.
+	"""
 	response = requests.get(url)	
 	if (response.status_code == 200):
 		return response.text
@@ -43,11 +63,19 @@ def get_html(url):
 		print("Server under maintenance.! Please try again later")
 
 def crawl_keyword(keyword):
+	"""
+		Input - keyword
+		Output - number of results for that keyword
+	"""
 	html = get_html(generate_url(keyword))	
 	total_number_of_results = get_maximum_number(parse_html_total_number_of_results(html))
 	print("Number of total results for "+keyword+" are: ", total_number_of_results)
 
 def crawl_keyword_page_number(keyword, page_number):
+	"""
+		Input - keyword, page_number
+		Output - Returns details regarding different products on that page.
+	"""
 	html = get_html(generate_url(keyword, page_number))	
 	parse_html_get_results(html)
 

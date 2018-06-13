@@ -9,6 +9,3 @@ python3 crawler.py <keyword> <page_number>
 
 1) If you want to have spaces inside your keyword, it is not supported. Append "+" and then search. 
    For e.g. If we want keyword to be iphone samsung, put keyword as iphone+samsung
-
- 
-
