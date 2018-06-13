@@ -8,7 +8,7 @@ def get_maximum_number(input_query):
 		Input - String containing digits
 		Output - Returns the maximum number from all the digits.
 	"""
-	max = -9
+	max = 0
 	for word in input_query.split(" "):		
 		if word.strip().isdigit():
 			if int(word.strip()) > max:
