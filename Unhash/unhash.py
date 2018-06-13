@@ -1,9 +1,15 @@
-# Input format
 import sys
 
 characters = "acdegilmnoprstuw"
 
 def unhash(hashed):
+	""" 
+		Method which unhashes a given integer.
+
+		The provided hash function converts from base 37 to base 10.
+		For unhasing we convert from base 10 to base 37.
+		Taking care of edge cases as well.
+ 	"""
 	if hashed > 7:
 		rem = hashed%37
 		hashed = hashed//37
